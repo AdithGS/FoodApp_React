@@ -1,4 +1,4 @@
-import { REST_IMG } from "../utlis/common";
+import { REST_IMG } from "../utils/common";
 const RestaurantCards = (props) => {
     return (
       <div className="grid   w-48 justify-items-center transition-transform transform pb-2 mt-2 hover:scale-95 cursor-pointer ">
