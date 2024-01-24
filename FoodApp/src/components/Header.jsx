@@ -1,8 +1,8 @@
-import { LOGO_URL } from "../utlis/common";
+import { LOGO_URL } from "../utils/common";
 import { CiUser } from "react-icons/ci";
 import { BiSolidOffer } from "react-icons/bi";
 import { CiSearch } from "react-icons/ci";
-import { DOWN_ARROW_SVG } from "../utlis/common";
+import { DOWN_ARROW_SVG } from "../utils/common";
 
 function truncate(str) {
   return str.length > 10 ? str.substring(0, 25) + "..." : str;
