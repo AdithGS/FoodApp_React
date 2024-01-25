@@ -17,11 +17,11 @@ const Body = () => {
   }, [])
 
   const getData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.2587531&lng=75.78041&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const restListJson = await data.json()
-    setRestListArray(restListJson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setRestListArray(restListJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     console.log(restListArray)
-    setFileterdRestArray(restListJson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFileterdRestArray(restListJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   }
 
   return restListArray.length === 0 ? (<Shimmer />) : (
