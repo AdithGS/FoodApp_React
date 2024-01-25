@@ -1,49 +1,30 @@
+import { useEffect, useState } from "react";
 import RestaurantCards from "./RestaurantCards";
-// import { DOWN_ARROW_SVG } from "../utlis/common";
+import { DOWN_ARROW_SVG } from "../utils/common";
 // import RestoCardComponent from "./RestoCardComponent";
 const Body = () => {
-    // function truncate(str)  {
-    //     return str.length > 10 ? str.substring(0,25) + "..." : str;
-    // }
-    return (
-      <div className="flex flex-col w-full ">
-        {/* <div className="location flex flex-row gap-x-2">
-        <span className="font-mono cursor-pointer hover:text-red-500 ">Vadakara</span>
-        <span className="text-slate-300 cursor-pointer">
-        {truncate("17, Kozhikode - Palakkad Hwy, Polpaya Mana, Tazhekkod, Kozhikode, Kerala 673004, India")}
-        </span>
-        <span className="cursor-pointer stroke-cyan-500">
-          {DOWN_ARROW_SVG}
-        </span>
-      </div> */}
-        <div className="flex flex-row space-x-4  flex-wrap">
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-          <RestaurantCards resName="Alpic Foods" cuisine="Biriyani,North Indian,Asia"/>
-        </div>
+  // function truncate(str)  {
+  //     return str.length > 10 ? str.substring(0,25) + "..." : str;
+  // }
+  const [restListArray, setRestListArray] = useState([])
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async () => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const restListJson = await data.json()
+    setRestListArray(restListJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+  
+  return (
+    <div className="flex flex-col w-full mx-8">
+      <div className="flex flex-row space-x-4  flex-wrap">
+        {
+          restListArray?.map((rest) => (<RestaurantCards key={rest.info.id} resName={rest.info.name} cuisine={rest.info.cuisines} restImage={rest.info.restImage} />))
+        }
       </div>
-    );
-  };
-  export default Body;
+    </div>
+  );
+};
+export default Body;

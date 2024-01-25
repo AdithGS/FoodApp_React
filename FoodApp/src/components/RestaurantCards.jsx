@@ -1,18 +1,24 @@
 import { REST_IMG } from "../utils/common";
+import { MdStars } from "react-icons/md";
 const RestaurantCards = (props) => {
-    return (
-      <div className="grid   w-48 justify-items-center transition-transform transform pb-2 mt-2 hover:scale-95 cursor-pointer ">
-        <div >
-          <img className="w-full h-90" src={REST_IMG} alt="rest_logo" />
-        </div>
-        <div>
-        <h3 className="text-slate-950 uppercase font-mono text-xl font-bold">{props.resName}</h3>
-        <h4 className="text-slate-500 lowercase font-mono text-sm font-light">4.5 Stars . 38 minutes </h4>
-        <h4 className="text-gray-400 normal-case font-mono text-sm font-light">{props.cuisine}</h4>
-        </div>
-        
+  return (
+    <div class="flex flex-col border border-gray-300 mx-3 my-3 rounded-lg shadow-md overflow-hidden w-64">
+      <div class="p-4">
+        <img
+          class="w-32 h-28 object-cover"
+          src={REST_IMG}
+          // src={props.restImage}
+          alt="Restaurant Logo"
+        />
       </div>
-    );
-  };
-  export default RestaurantCards;
-  
+      <div class="p-4 flex flex-col justify-center">
+        <h3 class="text-lg font-semibold text-gray-900">{props.resName}</h3>
+        <h4 class="text-sm font-light text-gray-600">
+          <span class=" flex flex-row gap-x-2 text-slate-800 font-mono"><MdStars/>4.5. 38 minutes</span>
+        </h4>
+        <h4 class="text-sm font-light text-gray-400">{props.cuisine.join(", ")}</h4>
+      </div>
+    </div>
+  );
+};
+export default RestaurantCards;
