@@ -17,7 +17,7 @@ const RestaurantCards = (props) => {
         <h4 className="text-sm font-light text-gray-600">
           <span className=" flex flex-row gap-x-2 text-slate-800 font-mono">
             <MdStars />
-            4.5. 38 minutes
+           {props.restRating} {props.estDelivery} minutes
           </span>
         </h4>
         <h4 className="text-sm font-light text-gray-400">

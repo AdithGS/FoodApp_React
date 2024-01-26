@@ -22,6 +22,7 @@ const Body = () => {
     setRestListArray(restListJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     console.log(restListArray)
     setFileterdRestArray(restListJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    console.log(restListArray)
   }
 
   return restListArray.length === 0 ? (<Shimmer />) : (
@@ -56,7 +57,7 @@ const Body = () => {
       </div> */}
       <div className="flex flex-row space-x-4  flex-wrap">
         {
-          filteredRestArray?.map((rest) => (<RestaurantCards key={rest.info.id} resName={rest.info.name} cuisine={rest.info.cuisines} restImage={rest.info.restImage} />))
+          filteredRestArray?.map((rest) => (<RestaurantCards key={rest.info.id} resName={rest.info.name} cuisine={rest.info.cuisines} restImage={rest.info.restImage} restRating={rest.info.avgRating} estDelivery={rest.info.sla.deliveryTime} />))
         }
       </div>
     </div>
